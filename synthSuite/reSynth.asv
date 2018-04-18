@@ -4,10 +4,7 @@ function [f,P1,a,harmfreq,harmpow,p] = reSynth(fileName,numHarm,time,doPlot)
 
 fileExt = '.wav';
 fileSuf = '_Synth';
-filePath = reSynthFFP(fileName,fileSuf);
-if exist(filePath) == 0
-    mkdir(filePath);
-end
+filePath = reSynthFFP(fileName);
 wavIn = strcat(fileName,fileExt);
 wavOut = strcat(filePath,fileName,fileSuf,fileExt);
 
@@ -65,15 +62,14 @@ audiowrite(wavOut,wavVar,Fs);
 specPlotInt(fileName,numHarm,doPlot);
 end
 
-function [filePath] = reSynthFFP(fileName,fileSuf)
+function [filePath] = reSynthFFP(fileName);
 
 num = '1234567890';
-let = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
+let = 'AaBbCcDdEeFfGg';
 
 [rank,extra] = strtok(fileName,num);
 [foot,noteOct] = strtok(extra,let);
-[~,oct] = strtok(noteOct,num);
-[~,type] = strtok(fileSuf,let);
+[note,oct] = strtok(noteOct,num);
 
-filePath = ['D:\OrganSamples\Brombaugh\Ruckpositive\',rank,foot,'\',type,'\Octave',oct,'\'];
+filePath = [
 end

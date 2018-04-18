@@ -1,4 +1,4 @@
-function [wavForm,Fs,a] = wavSynth(fileName,Fs,fundFreq)
+function [wavForm,Fs,a] = wavSynth(fileName,Fs,fundFreq,numHarm)
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -25,4 +25,5 @@ while m1 <= length(freqList)
 end
 wavForm = wavVar;
 audiowrite(wavOut,wavVar,Fs);
+specPlotInt(fileName,numHarm);
 end
