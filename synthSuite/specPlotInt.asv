@@ -20,8 +20,8 @@ P1 = P2(1:L/2+1);
 P1(2:end-1) = 2*P1(2:end-1);
 f = Fs*(0:(L/2))/L;
 
-%[harmpow,harmNo] = findpeaks(P1,'MinPeakDistance',(fundFreq/4),'Threshold',.0005,'NPeaks',numHarm);
-[harmpow,harmNo] = findpeaks(P1,'SortStr','descend','NPeaks',numHarm,'MinPeakDistance',(fundFreq/4));
+[harmpow,harmNo] = findpeaks(P1,'MinPeakDistance',(fundFreq/4),'Threshold',.0005,'NPeaks',numHarm);
+[harmpow,harmNo]= findpeaks(P1'NPeaks',numHarm);
 harmfreq = NaN(size(harmNo));
 hCyc = 1;
 while hCyc <= length(harmNo)
@@ -46,7 +46,7 @@ grid minor;
 %axis([0 1000 0 .1]);
 
 figure(6);
-stem(harmfreq,harmpow,'Marker','none');
+plot(harmfreq,harmpow);
 title({['Analysed Peak Frequency-Domain Amplitudes of Synthesized'],[fileName ' - Top ' num2str(numHarm) ' Harmonics']});
 xlabel('Frequency (Hz)');
 ylabel('Amplitude');
